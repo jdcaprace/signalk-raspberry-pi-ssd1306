@@ -17,7 +17,8 @@
     "url": "https://github.com/jdcaprace/signalk-raspberry-pi-ssd1306/issues"
   },
   "dependencies": {
-    "oled-ssd1306-i2c": "1.0.6"
+    "oled-ssd1306-i2c": "1.0.6",
+    "oled-font-5x7": "1.0.3"
   },
   "scripts": {
     "test": "echo \"No test specified\""
