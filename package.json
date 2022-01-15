@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "oled-i2c-bus": "1.0.12",
-    "oled-font-5x7": "1.0.3"
+    "oled-font-5x7": "1.0.3",
+    "i2c-bus": "5.2.2",
   },
   "scripts": {
     "test": "echo \"No test specified\""
