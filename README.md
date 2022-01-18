@@ -6,13 +6,21 @@ ssd1306 i2c mini OLED display (128 x 64 pixels) to plot SignalK path values for 
 
 This plugin can be downloaded via the SignalK application.
 
+Some examples of possible uses are found below:
+* Emergency GPS.
+* Health parameters of your SignalK server.
+* Health parameters of your Raspberry Pi.
+* Main parameters of your battery power bank.
+* Alarm and notifications.
+* Etc.
+
 ## Getting Started
 You will need a raspberry pi with SignalK installed along with a ssd1306 i2c oled diplay to used it.
 
 ### The SSD1306 oled display
 Personally I am using the sensor found at the following link on Amazon. However there are many manufacturers to pick from. Be carrefull to buy an i2c version for compatibility with this plugin.
 
-![ssd1306](../main/Pictures/ssd1306.png)
+![ssd1306](../master/Pictures/ssd1306.png)
 
 Learn more: https://www.amazon.com/HiLetgo-Serial-128X64-Display-Color/dp/B06XRBTBTB/ref=sr_1_2_sspa
 
