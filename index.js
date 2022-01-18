@@ -83,11 +83,11 @@ module.exports = function (app) {
       var opts = {
         width: 128, // screen width
         height: 64, // screen height
-        address: options.i2c_address, // 0x3C, // Pass I2C address of screen if it is not the default of 0x3C
+        address: Number(options.i2c_address), // 0x3C, // Pass I2C address of screen if it is not the default of 0x3C
         busnbr: options.i2c_bus, //1,
       };
 
-      var bus = i2c.openSync(Number(opts.busnbr));
+      var bus = i2c.openSync(opts.busnbr);
       var oled = new ssd1306(bus, opts);
 
       oled.turnOnDisplay();
@@ -95,7 +95,7 @@ module.exports = function (app) {
       oled.dimDisplay(false);
       oled.invertDisplay(false);
 
-      //console.log("plotoled function");
+      console.log("Plotoled function");
 
       // sets cursor to x = 1, y = 1
       oled.setCursor(1, 18);
