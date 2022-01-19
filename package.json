@@ -17,11 +17,11 @@
     "url": "https://github.com/jdcaprace/signalk-raspberry-pi-ssd1306/issues"
   },
   "dependencies": {
-    "oled-i2c-bus": "1.0.12",
+    "@signalk/signalk-schema": "1.6.0",
+    "baconjs": "3.0.17",
     "i2c-bus": "5.2.2",
     "oled-font-5x7": "1.0.3",
-    "@signalk/signalk-schema": "1.6.0",
-    "baconjs": "3.0.17"
+    "oled-i2c-bus": "1.0.12"
   },
   "scripts": {
     "test": "echo \"No test specified\""

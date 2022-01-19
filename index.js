@@ -44,6 +44,23 @@ module.exports = function (app) {
         title: 'I2C address',
         default: '0x3c',
       },
+      skpath1: {
+        type: 'string',
+        title: 'Signal K path of the first parameter',
+        default: 'name',
+      },
+      shortcode1: {
+        type: 'string',
+        title: 'Short code of 3 to 5 digits (prefix)',
+        default: 'NAME',
+      },
+      active1: {
+        type: 'boolean',
+        title: 'Is active',
+        default: true,
+      },
+      
+      /*
       skpath: {
         type: 'array',
         title: ' ',
@@ -64,17 +81,29 @@ module.exports = function (app) {
               title: 'Signal K path',
               type: 'string',
               default: '',
+              //Not enough flexible for custom fields?
               'enum': relevantKeys,
             }
           }
         }
-      },     
+      }, 
+      */    
     }
   }
 
   plugin.start = function (options) {
 
-            
+
+    let tpv = {};
+		if(app.getSelfPath(options.skpath1)){
+			if(!tpv.sk1) tpv.sk1 = {};
+			tpv.sk1.value = app.getSelfPath(options.skpath1).value;
+			tpv.sk1.timestamp =  Date.parse(app.getSelfPath(options.skpath1).timestamp);
+		}
+    
+    
+    console.log("TPV:",tpv);
+
 
     //To plot on OLED screen via I2C
     function plotoled(){
@@ -114,10 +143,14 @@ module.exports = function (app) {
 
  
   plugin.stop = function () {
+    
     if(timer){
       clearInterval(timer);
       timeout = null;
     }
+
+    unsubscribes.forEach(f => f())
+    unsubscribes = []
   }
 
   return plugin
