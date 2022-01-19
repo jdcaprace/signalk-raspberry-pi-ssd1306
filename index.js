@@ -91,6 +91,8 @@ module.exports = function (app) {
     }
   }
 
+  var unsubscribes = [];
+
   plugin.start = function (options) {
 
 
@@ -102,7 +104,7 @@ module.exports = function (app) {
 		}
     
     
-    console.log("TPV:",tpv);
+    console.log("tpv: ",tpv);
 
 
     //To plot on OLED screen via I2C
@@ -143,7 +145,7 @@ module.exports = function (app) {
 
  
   plugin.stop = function () {
-    
+    app.debug('Plugin stopped');
     if(timer){
       clearInterval(timer);
       timeout = null;
@@ -153,7 +155,7 @@ module.exports = function (app) {
     unsubscribes = []
   }
 
-  return plugin
+  return plugin;
 }
 
 
