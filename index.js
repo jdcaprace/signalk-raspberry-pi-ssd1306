@@ -46,19 +46,52 @@ module.exports = function (app) {
       },
       skpath1: {
         type: 'string',
-        title: 'Signal K path of the first parameter',
-        default: 'name',
+        title: 'SK1 - Signal K path of the 1st parameter',
+        default: 'navigation.courseOverGroundTrue',
       },
       shortcode1: {
         type: 'string',
-        title: 'Short code of 3 to 5 digits (prefix)',
-        default: 'NAME',
+        title: 'SK1 - Short code of 5 to 10 digits (prefix) of the 1st parameter',
+        default: 'COG (rad)',
       },
+      skpath2: {
+        type: 'string',
+        title: 'SK2 - Signal K path of the 2nd parameter',
+        default: 'navigation.speedOverGround',
+      },
+      shortcode2: {
+        type: 'string',
+        title: 'SK2 - Short code of 5 to 10 digits (prefix) of the 2nd parameter',
+        default: 'SOG (m/s)',
+      },      
+      skpath3: {
+        type: 'string',
+        title: 'SK3 - Signal K path of the 3rd parameter',
+        default: 'navigation.navigation.position',
+      },
+      shortcode3: {
+        type: 'string',
+        title: 'SK3 - Short code of 5 to 10 digits (prefix) of the 3rd parameter',
+        default: 'POS',
+      },  
+      skpath4: {
+        type: 'string',
+        title: 'SK4 - Signal K path of the 3rd parameter',
+        default: 'environment.outside.temperature',
+      },
+      shortcode4: {
+        type: 'string',
+        title: 'SK4 - Short code of 5 to 10 digits (prefix) of the 3rd parameter',
+        default: 'TEMP (K)',
+      },      
+
+      /*
       active1: {
         type: 'boolean',
         title: 'Is active',
         default: true,
       },
+      */
       
       /*
       skpath: {
@@ -95,16 +128,45 @@ module.exports = function (app) {
 
   plugin.start = function (options) {
 
-
     let tpv = {};
+
 		if(app.getSelfPath(options.skpath1)){
 			if(!tpv.sk1) tpv.sk1 = {};
+      tpv.sk1.shortcode = options.shortcode1;
 			tpv.sk1.value = app.getSelfPath(options.skpath1).value;
 			tpv.sk1.timestamp =  Date.parse(app.getSelfPath(options.skpath1).timestamp);
+      tpv.sk1.toprint = tpv.sk1.shortcode + ' :' + String(tpv.sk1.value);
 		}
-    
-    
-    console.log("tpv: ",tpv);
+    console.log("tpv.sk1.value: ",tpvtpv.sk1.value);
+
+    if(app.getSelfPath(options.skpath2)){
+			if(!tpv.sk2) tpv.sk2 = {};
+      tpv.sk2.shortcode = options.shortcode2;
+			tpv.sk2.value = app.getSelfPath(options.skpath2).value;
+			tpv.sk2.timestamp =  Date.parse(app.getSelfPath(options.skpath2).timestamp);
+      tpv.sk2.toprint = tpv.sk2.shortcode + ' :' + String(tpv.sk2.value);
+		}
+    console.log("tpv.sk2.value: ",tpvtpv.sk2.value);
+
+    if(app.getSelfPath(options.skpath3)){
+			if(!tpv.sk3) tpv.sk3 = {};
+      tpv.sk3.shortcode = options.shortcode3;
+			tpv.sk3.value = app.getSelfPath(options.skpath3).value;
+			tpv.sk3.timestamp =  Date.parse(app.getSelfPath(options.skpath3).timestamp);
+      tpv.sk3.toprint = tpv.sk3.shortcode + ' :' + String(tpv.sk3.value);
+		}
+    console.log("tpv.sk3.value: ",tpvtpv.sk3.value);
+
+    if(app.getSelfPath(options.skpath4)){
+			if(!tpv.sk4) tpv.sk4 = {};
+      tpv.sk4.shortcode = options.shortcode4;
+			tpv.sk4.value = app.getSelfPath(options.skpath4).value;
+			tpv.sk4.timestamp =  Date.parse(app.getSelfPath(options.skpath4).timestamp);
+      tpv.sk4.toprint = tpv.sk4.shortcode + ' :' + String(tpv.sk4.value);
+		}
+    console.log("tpv.sk4.value: ",tpvtpv.sk4.value);
+
+
 
 
     //To plot on OLED screen via I2C
@@ -126,17 +188,17 @@ module.exports = function (app) {
       oled.dimDisplay(false);
       oled.invertDisplay(false);
 
-      console.log("Plotoled function");
+      //console.log("Plotoled function");
 
       // sets cursor to x = 1, y = 1
       oled.setCursor(1, 18);
-      oled.writeString(font, 1, 'LAT: 000000000000', 26, true);
+      oled.writeString(font, 1, tpv.sk1.toprint, 26, true);
       oled.setCursor(1, 28);
-      oled.writeString(font, 1, 'LON: 000000000000', 26, true);
-      //oled.setCursor(1, 38);
-      //oled.writeString(font, 1, 'COG: 000000000000', 26, true);
-      //oled.setCursor(1, 48);
-      //oled.writeString(font, 1, 'SOG: 000000000000', 26, true);
+      oled.writeString(font, 1, tpv.sk2.toprint, 26, true);
+      oled.setCursor(1, 38);
+      oled.writeString(font, 1, tpv.sk3.toprint, 26, true);
+      oled.setCursor(1, 48);
+      oled.writeString(font, 1, tpv.sk4.toprint, 26, true);
 
     }     
     	     
