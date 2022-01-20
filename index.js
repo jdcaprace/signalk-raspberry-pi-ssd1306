@@ -136,10 +136,12 @@ module.exports = function (app) {
 			tpv.sk1.value = app.getSelfPath(options.skpath1).value;
 
       console.log("tpv.sk1.value: ",tpv.sk1.value);
+      console.log("stringify: ",JSON.stringify(tpv.sk1.value));
       
         if(options.skpath1.includes('navigation.position')){
           tpv.sk1.value = app.getSelfPath(options.skpath1).value;
-          var pos = JSON.parse(tpv.sk1.value);
+          var pos = JSON.parse(JSON.stringify(tpv.sk1.value));
+          console.log("pos: ",pos);
           tpv.sk1.value = 'LON: ' + String(pos.longitude) + 'LAT: ' + String(pos.latitude);
         }
         
