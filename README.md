@@ -1,6 +1,5 @@
 
 # signalk-raspberry-pi-ssd1306
-!!! Under Development !!!
 
 ssd1306 i2c mini OLED display (128 x 64 pixels) to plot SignalK path values for Raspberry-Pi. The plugin is designed to plot maximum 4 values on the display.
 

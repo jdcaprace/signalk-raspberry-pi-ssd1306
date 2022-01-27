@@ -147,18 +147,16 @@ module.exports = function (app) {
       tpv.sk1.shortcode = options.shortcode1;
 			tpv.sk1.value = app.getSelfPath(options.skpath1).value;
 
-      console.log("tpv.sk1.value: ",tpv.sk1.value);
-      console.log("stringify: ",JSON.stringify(tpv.sk1.value));
+      //console.log("tpv.sk1.value: ",tpv.sk1.value);
+      //console.log("stringify: ",JSON.stringify(tpv.sk1.value));
       
         if(options.skpath1.includes('navigation.position')){
           tpv.sk1.value = app.getSelfPath(options.skpath1).value;
           var pos = JSON.parse(JSON.stringify(tpv.sk1.value));
-          console.log("pos: ",pos);
+          //console.log("pos: ",pos);
           tpv.sk1.value = 'LON: ' + String(pos.longitude.toFixed(5)) + ' LAT: ' + String(pos.latitude.toFixed(5));
         }
         
-        //TODO need 2 lines to plot. Isactive can be used to not plot everything
-
         /*
         const json = '{"result":true, "count":42}';
         const obj = JSON.parse(json);
@@ -169,7 +167,7 @@ module.exports = function (app) {
 			tpv.sk1.timestamp =  Date.parse(app.getSelfPath(options.skpath1).timestamp);
       tpv.sk1.toprint = tpv.sk1.shortcode + ': ' + String(tpv.sk1.value);
 		}
-    console.log("tpv.sk1.value: ",tpv.sk1.value);
+    //console.log("tpv.sk1.value: ",tpv.sk1.value);
 
     if(app.getSelfPath(options.skpath2)){
 			if(!tpv.sk2) tpv.sk2 = {};
@@ -178,7 +176,7 @@ module.exports = function (app) {
 			tpv.sk2.timestamp =  Date.parse(app.getSelfPath(options.skpath2).timestamp);
       tpv.sk2.toprint = tpv.sk2.shortcode + ': ' + String(tpv.sk2.value);
 		}
-    console.log("tpv.sk2.value: ",tpv.sk2.value);
+    //console.log("tpv.sk2.value: ",tpv.sk2.value);
 
     if(app.getSelfPath(options.skpath3)){
 			if(!tpv.sk3) tpv.sk3 = {};
@@ -187,7 +185,7 @@ module.exports = function (app) {
 			tpv.sk3.timestamp =  Date.parse(app.getSelfPath(options.skpath3).timestamp);
       tpv.sk3.toprint = tpv.sk3.shortcode + ': ' + String(tpv.sk3.value);
 		}
-    console.log("tpv.sk3.value: ",tpv.sk3.value);
+    //console.log("tpv.sk3.value: ",tpv.sk3.value);
 
     if(app.getSelfPath(options.skpath4)){
 			if(!tpv.sk4) tpv.sk4 = {};
@@ -196,7 +194,7 @@ module.exports = function (app) {
 			tpv.sk4.timestamp =  Date.parse(app.getSelfPath(options.skpath4).timestamp);
       tpv.sk4.toprint = tpv.sk4.shortcode + ': ' + String(tpv.sk4.value);
 		}
-    console.log("tpv.sk4.value: ",tpv.sk4.value);
+    //console.log("tpv.sk4.value: ",tpv.sk4.value);
 
 
 
