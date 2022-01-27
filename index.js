@@ -47,12 +47,17 @@ module.exports = function (app) {
       skpath1: {
         type: 'string',
         title: 'SK1 - Signal K path of the 1st parameter',
-        default: 'navigation.courseOverGroundTrue',
+        default: 'navigation.position',
       },
       shortcode1: {
         type: 'string',
         title: 'SK1 - Short code of 5 to 10 digits (prefix) of the 1st parameter',
-        default: 'COG (rad)',
+        default: 'POS',
+      },
+      active1: {
+        type: 'boolean',
+        title: 'SK1 - Is active',
+        default: true,
       },
       skpath2: {
         type: 'string',
@@ -63,16 +68,26 @@ module.exports = function (app) {
         type: 'string',
         title: 'SK2 - Short code of 5 to 10 digits (prefix) of the 2nd parameter',
         default: 'SOG (m/s)',
+      },
+      active2: {
+        type: 'boolean',
+        title: 'SK2 - Is active',
+        default: true,
       },      
       skpath3: {
         type: 'string',
         title: 'SK3 - Signal K path of the 3rd parameter',
-        default: 'navigation.navigation.position',
+        default: 'navigation.courseOverGroundTrue',
       },
       shortcode3: {
         type: 'string',
         title: 'SK3 - Short code of 5 to 10 digits (prefix) of the 3rd parameter',
-        default: 'POS',
+        default: 'COG (rad)',
+      },
+      active3: {
+        type: 'boolean',
+        title: 'SK3 - Is active',
+        default: true,
       },  
       skpath4: {
         type: 'string',
@@ -83,16 +98,13 @@ module.exports = function (app) {
         type: 'string',
         title: 'SK4 - Short code of 5 to 10 digits (prefix) of the 3rd parameter',
         default: 'TEMP (K)',
-      },      
-
-      /*
-      active1: {
-        type: 'boolean',
-        title: 'Is active',
-        default: true,
       },
-      */
-      
+      active4: {
+        type: 'boolean',
+        title: 'SK4 - Is active',
+        default: true,
+      },      
+    
       /*
       skpath: {
         type: 'array',
@@ -142,9 +154,10 @@ module.exports = function (app) {
           tpv.sk1.value = app.getSelfPath(options.skpath1).value;
           var pos = JSON.parse(JSON.stringify(tpv.sk1.value));
           console.log("pos: ",pos);
-          tpv.sk1.value = 'LON: ' + String(pos.longitude) + 'LAT: ' + String(pos.latitude);
+          tpv.sk1.value = 'LON: ' + String(pos.longitude) + ' LAT: ' + String(pos.latitude);
         }
         
+        //TODO need 2 lines to plot. Isactive can be used to not plot everything
 
         /*
         const json = '{"result":true, "count":42}';
@@ -210,15 +223,26 @@ module.exports = function (app) {
       //console.log("Plotoled function");
 
       // sets cursor to x = 1, y = 1
+      if(options.active1)
+      {
       oled.setCursor(1, 18);
       oled.writeString(font, 1, tpv.sk1.toprint, 26, true);
+      }
+      if(options.active2)
+      {
       oled.setCursor(1, 28);
       oled.writeString(font, 1, tpv.sk2.toprint, 26, true);
+      }
+      if(options.active3)
+      {
       oled.setCursor(1, 38);
       oled.writeString(font, 1, tpv.sk3.toprint, 26, true);
+      }
+      if(options.active4)
+      {
       oled.setCursor(1, 48);
       oled.writeString(font, 1, tpv.sk4.toprint, 26, true);
-
+      }
     }     
     	     
     timer = setInterval(plotoled, options.rate * 1000);
