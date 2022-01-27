@@ -154,7 +154,7 @@ module.exports = function (app) {
           tpv.sk1.value = app.getSelfPath(options.skpath1).value;
           var pos = JSON.parse(JSON.stringify(tpv.sk1.value));
           console.log("pos: ",pos);
-          tpv.sk1.value = 'LON: ' + String(pos.longitude) + ' LAT: ' + String(pos.latitude);
+          tpv.sk1.value = 'LON: ' + String(pos.longitude.toFixed(5)) + ' LAT: ' + String(pos.latitude.toFixed(5));
         }
         
         //TODO need 2 lines to plot. Isactive can be used to not plot everything
