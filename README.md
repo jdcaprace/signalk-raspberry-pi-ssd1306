@@ -34,6 +34,24 @@ You need to make sure Raspberry Pi is turned off while doing this!
 
 In order to use the sensor, the i2c bus must be enabled on your rasbperry pi. This can be accomplished using "sudo raspi-config".
 
+### Plugin configuration
+AFter installation, restart the Signal K server.
+Go to Server > Plugin Config.
+
+The following parameters are available to perform the configuration of the plugin in function of your needs:
+* 'Refresh Sample Rate (in seconds)': This is the refresh sample rate of the ssd1306 oled display. Default value is set to 5 seconds.
+* 'I2C bus number': This is the default bus number of you raspberry pi. The default value is set to 1.
+* 'I2C address': This is the I2C address of the ssd1306 oled display. Default value is set to 0x3c.
+
+For each display line of the ssd1306 oled display you can setup the following variables. The variable name are prefixed with 'SKi' where i is the linenumber.
+* 'SKi - Signal K path of the 1st parameter': This is the signal k path of the variable that you want to plot in the line i. Ex: 'navigation.position'.
+* 'SKi - Short code of 5 to 10 digits (prefix) of the ird parameter: This is a prefix that is plotted before the content of the field. Ex: 'SOG (m/s):'.
+* 'SKi - Offset value to be added to the value of the field': Ex: You can offset the value of temperature to plot the value in Celsius instead of Kelvin.
+* 'SKi - Parameter that is going to multiply the value of the field': Ex: It can be use to change the unit of the field to plot.
+* 'SKi - Is active': This field enable or disable the plotting of the line i.
+
+Important: Actually, only the first line SK1 is configured to properly plot the JSON content of the 'navigation.position'. It is maybe necessary to disable the plotting of the second line SK2 to have enough space (2 lines) to plot the content of this field.
+
 ## Troubleshooting
 If the display isn't found you can run `ls /dev/*i2c*` which should return `/dev/i2c-1`. If it doesnt return then make sure that the i2c bus is enabled using raspi-config.
 

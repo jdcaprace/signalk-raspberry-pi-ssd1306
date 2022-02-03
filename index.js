@@ -54,6 +54,16 @@ module.exports = function (app) {
         title: 'SK1 - Short code of 5 to 10 digits (prefix) of the 1st parameter',
         default: 'POS',
       },
+      offset1: {
+        type: 'number',
+        title: 'SK1 - Offset value to be added to the value of the field',
+        default: 0,
+      },
+      multiplier1: {
+        type: 'number',
+        title: 'SK1 - Parameter that is going to multiply the value of the field',
+        default: 1,
+      },
       active1: {
         type: 'boolean',
         title: 'SK1 - Is active',
@@ -68,6 +78,16 @@ module.exports = function (app) {
         type: 'string',
         title: 'SK2 - Short code of 5 to 10 digits (prefix) of the 2nd parameter',
         default: 'SOG (m/s)',
+      },
+      offset2: {
+        type: 'number',
+        title: 'SK2 - Offset value to be added to the value of the field',
+        default: 0,
+      },
+      multiplier2: {
+        type: 'number',
+        title: 'SK2 - Parameter that is going to multiply the value of the field',
+        default: 1,
       },
       active2: {
         type: 'boolean',
@@ -84,6 +104,16 @@ module.exports = function (app) {
         title: 'SK3 - Short code of 5 to 10 digits (prefix) of the 3rd parameter',
         default: 'COG (rad)',
       },
+      offset3: {
+        type: 'number',
+        title: 'SK3 - Offset value to be added to the value of the field',
+        default: 0,
+      },
+      multiplier3: {
+        type: 'number',
+        title: 'SK3 - Parameter that is going to multiply the value of the field',
+        default: 1,
+      },
       active3: {
         type: 'boolean',
         title: 'SK3 - Is active',
@@ -98,6 +128,16 @@ module.exports = function (app) {
         type: 'string',
         title: 'SK4 - Short code of 5 to 10 digits (prefix) of the 3rd parameter',
         default: 'TEMP (K)',
+      },
+      offset4: {
+        type: 'number',
+        title: 'SK4 - Offset value to be added to the value of the field',
+        default: 0,
+      },
+      multiplier4: {
+        type: 'number',
+        title: 'SK4 - Parameter that is going to multiply the value of the field',
+        default: 1,
       },
       active4: {
         type: 'boolean',
@@ -146,6 +186,8 @@ module.exports = function (app) {
 			if(!tpv.sk1) tpv.sk1 = {};
       tpv.sk1.shortcode = options.shortcode1;
 			tpv.sk1.value = app.getSelfPath(options.skpath1).value;
+      if(options.offset1!=0){tpv.sk1.value = Number(tpv.sk1.value) + Number(options.offset1);}
+      if(options.multiplier1!=1){tpv.sk1.value = Number(tpv.sk1.value) * Number(options.offset1);}
 
       //console.log("tpv.sk1.value: ",tpv.sk1.value);
       //console.log("stringify: ",JSON.stringify(tpv.sk1.value));
@@ -173,6 +215,8 @@ module.exports = function (app) {
 			if(!tpv.sk2) tpv.sk2 = {};
       tpv.sk2.shortcode = options.shortcode2;
 			tpv.sk2.value = app.getSelfPath(options.skpath2).value;
+      if(options.offset2!=0){tpv.sk2.value = Number(tpv.sk2.value) + Number(options.offset2);}
+      if(options.multiplier2!=1){tpv.sk2.value = Number(tpv.sk2.value) * Number(options.offset2);}
 			tpv.sk2.timestamp =  Date.parse(app.getSelfPath(options.skpath2).timestamp);
       tpv.sk2.toprint = tpv.sk2.shortcode + ': ' + String(tpv.sk2.value);
 		}
@@ -182,6 +226,8 @@ module.exports = function (app) {
 			if(!tpv.sk3) tpv.sk3 = {};
       tpv.sk3.shortcode = options.shortcode3;
 			tpv.sk3.value = app.getSelfPath(options.skpath3).value;
+      if(options.offset3!=0){tpv.sk3.value = Number(tpv.sk3.value) + Number(options.offset3);}
+      if(options.multiplier3!=1){tpv.sk3.value = Number(tpv.sk3.value) * Number(options.offset3);}
 			tpv.sk3.timestamp =  Date.parse(app.getSelfPath(options.skpath3).timestamp);
       tpv.sk3.toprint = tpv.sk3.shortcode + ': ' + String(tpv.sk3.value);
 		}
@@ -191,6 +237,8 @@ module.exports = function (app) {
 			if(!tpv.sk4) tpv.sk4 = {};
       tpv.sk4.shortcode = options.shortcode4;
 			tpv.sk4.value = app.getSelfPath(options.skpath4).value;
+      if(options.offset4!=0){tpv.sk4.value = Number(tpv.sk4.value) + Number(options.offset4);}
+      if(options.multiplier4!=1){tpv.sk4.value = Number(tpv.sk4.value) * Number(options.offset4);}
 			tpv.sk4.timestamp =  Date.parse(app.getSelfPath(options.skpath4).timestamp);
       tpv.sk4.toprint = tpv.sk4.shortcode + ': ' + String(tpv.sk4.value);
 		}
