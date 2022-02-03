@@ -188,6 +188,7 @@ module.exports = function (app) {
 			tpv.sk1.value = app.getSelfPath(options.skpath1).value;
       if(options.offset1!=0){tpv.sk1.value = Number(tpv.sk1.value) + Number(options.offset1);}
       if(options.multiplier1!=1){tpv.sk1.value = Number(tpv.sk1.value) * Number(options.offset1);}
+      if(typeof tpv.sk1.value == 'number'){tpv.sk1.value = tpv.sk1.value.toFixed(3);}
 
       //console.log("tpv.sk1.value: ",tpv.sk1.value);
       //console.log("stringify: ",JSON.stringify(tpv.sk1.value));
@@ -220,6 +221,7 @@ module.exports = function (app) {
 			tpv.sk2.value = app.getSelfPath(options.skpath2).value;
       if(options.offset2!=0){tpv.sk2.value = Number(tpv.sk2.value) + Number(options.offset2);}
       if(options.multiplier2!=1){tpv.sk2.value = Number(tpv.sk2.value) * Number(options.offset2);}
+      if(typeof tpv.sk2.value == 'number'){tpv.sk2.value = tpv.sk2.value.toFixed(3);}
 			tpv.sk2.timestamp =  Date.parse(app.getSelfPath(options.skpath2).timestamp);
       tpv.sk2.toprint = tpv.sk2.shortcode + ': ' + String(tpv.sk2.value);
 		}
@@ -231,6 +233,7 @@ module.exports = function (app) {
 			tpv.sk3.value = app.getSelfPath(options.skpath3).value;
       if(options.offset3!=0){tpv.sk3.value = Number(tpv.sk3.value) + Number(options.offset3);}
       if(options.multiplier3!=1){tpv.sk3.value = Number(tpv.sk3.value) * Number(options.offset3);}
+      if(typeof tpv.sk3.value == 'number'){tpv.sk3.value = tpv.sk3.value.toFixed(3);}
 			tpv.sk3.timestamp =  Date.parse(app.getSelfPath(options.skpath3).timestamp);
       tpv.sk3.toprint = tpv.sk3.shortcode + ': ' + String(tpv.sk3.value);
 		}
@@ -242,6 +245,7 @@ module.exports = function (app) {
 			tpv.sk4.value = app.getSelfPath(options.skpath4).value;
       if(options.offset4!=0){tpv.sk4.value = Number(tpv.sk4.value) + Number(options.offset4);}
       if(options.multiplier4!=1){tpv.sk4.value = Number(tpv.sk4.value) * Number(options.offset4);}
+      if(typeof tpv.sk4.value == 'number'){tpv.sk4.value = tpv.sk4.value.toFixed(3);}
 			tpv.sk4.timestamp =  Date.parse(app.getSelfPath(options.skpath4).timestamp);
       tpv.sk4.toprint = tpv.sk4.shortcode + ': ' + String(tpv.sk4.value);
 		}
